@@ -1,0 +1,1 @@
+Debug: yaYUL MAIN.agc > <Main.lst mv MAIN.agc.bin Main.bin mv MAIN.agc.symtab Main.symtab
