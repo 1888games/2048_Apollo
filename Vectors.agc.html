@@ -56,57 +56,62 @@ color: #993399;
 <span style="font-family: monospace;">
 <pre>
 <h1>Source Code</h1>
-000012,000001:    4004           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  T6RUPT</span>
-000013,000002:    4005           14006                           <span class="op">NOOP    </span>                                       
-000014,000003:    4006           14007                           <span class="op">NOOP    </span>                                       
-000015,000004:    4007           14010                           <span class="op">NOOP    </span>                                       
+000012,000001: 
+000013,000002:                                                                                                  <span class="co">#  We begin with an interrupt vector table. There are 10 possible interrupts,</span>
+000014,000003:                                                                                                  <span class="co">#  plus the restart vector which comes first.</span>
+000015,000004: 
 000016,000005: 
-000017,000006:    4010           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  T5RUPT</span>
-000018,000007:    4011           14012                           <span class="op">NOOP    </span>                                       
-000019,000008:    4012           14013                           <span class="op">NOOP    </span>                                       
-000020,000009:    4013           14014                           <span class="op">NOOP    </span>                                       
-000021,000010: 
-000022,000011:    4014           52011                           <span class="op">DXCH    </span> <a href="Constants.agc.html#4152555054">ARUPT</a>                                 <span class="co">#  T3RUPT</span>
-000023,000012:    4015           00006                           <span class="op">EXTEND  </span>                                       <span class="co">#  Back up A, L, and Q</span>
-000024,000013:    4016           22012                           <span class="op">QXCH    </span> <a href="Constants.agc.html#5152555054">QRUPT</a>                                 
-000025,000014:    4017           14134                           <span class="op">TCF     </span> <a href="Interrupts.agc.html#543352555054">T3RUPT</a>                                <span class="co">#  Transfer to the T3RUPT handler</span>
-000026,000015: 
-000027,000016:    4020           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  T4RUPT</span>
-000028,000017:    4021           14022                           <span class="op">NOOP    </span>                                       
-000029,000018:    4022           14023                           <span class="op">NOOP    </span>                                       
-000030,000019:    4023           14024                           <span class="op">NOOP    </span>                                       
-000031,000020: 
-000032,000021:    4024           52011                           <span class="op">DXCH    </span> <a href="Constants.agc.html#4152555054">ARUPT</a>                                 <span class="co">#  KEYRUPT1</span>
-000033,000022:    4025           34054                           <span class="op">CAF     </span> <a href="#4B45595250544242">KEYRPTBB</a>                              
-000034,000023:    4026           56006                           <span class="op">XCH     </span> <a href="Constants.agc.html#4242414E4B">BBANK</a>                                 
-000035,000024:    4027           14143                           <span class="op">TCF     </span> <a href="Input.agc.html#4B45595255505431">KEYRUPT1</a>                              
-000036,000025: 
-000037,000026:    4030           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  KEYRUPT2</span>
-000038,000027:    4031           14032                           <span class="op">NOOP    </span>                                       
-000039,000028:    4032           14033                           <span class="op">NOOP    </span>                                       
-000040,000029:    4033           14034                           <span class="op">NOOP    </span>                                       
-000041,000030: 
-000042,000031:    4034           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  UPRUPT</span>
-000043,000032:    4035           14036                           <span class="op">NOOP    </span>                                       
-000044,000033:    4036           14037                           <span class="op">NOOP    </span>                                       
-000045,000034:    4037           14040                           <span class="op">NOOP    </span>                                       
-000046,000035: 
-000047,000036:    4040           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  DOWNRUPT</span>
-000048,000037:    4041           14042                           <span class="op">NOOP    </span>                                       
-000049,000038:    4042           14043                           <span class="op">NOOP    </span>                                       
-000050,000039:    4043           14044                           <span class="op">NOOP    </span>                                       
-000051,000040: 
-000052,000041:    4044           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  RADAR RUPT</span>
-000053,000042:    4045           14046                           <span class="op">NOOP    </span>                                       
-000054,000043:    4046           14047                           <span class="op">NOOP    </span>                                       
-000055,000044:    4047           14050                           <span class="op">NOOP    </span>                                       
-000056,000045: 
-000057,000046:    4050           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  RUPT10</span>
-000058,000047:    4051           14052                           <span class="op">NOOP    </span>                                       
-000059,000048:    4052           14053                           <span class="op">NOOP    </span>                                       
-000060,000049:    4053           14054                           <span class="op">NOOP    </span>                                       
-000061,000050: 
-<a name="4B45595250544242"></a>000062,000051:    4054           04000        <span class="sm">KEYRPTBB</span>           <span class="ps">BBCON   </span> <a href="Input.agc.html#4B45595255505431">KEYRUPT1</a>                              
+000017,000006: 
+000018,000007:    4004           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  T6RUPT</span>
+000019,000008:    4005           14006                           <span class="op">NOOP    </span>                                       
+000020,000009:    4006           14007                           <span class="op">NOOP    </span>                                       
+000021,000010:    4007           14010                           <span class="op">NOOP    </span>                                       
+000022,000011: 
+000023,000012:    4010           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  T5RUPT</span>
+000024,000013:    4011           14012                           <span class="op">NOOP    </span>                                       
+000025,000014:    4012           14013                           <span class="op">NOOP    </span>                                       
+000026,000015:    4013           14014                           <span class="op">NOOP    </span>                                       
+000027,000016: 
+000028,000017:    4014           52011                           <span class="op">DXCH    </span> <a href="Constants.agc.html#4152555054">ARUPT</a>                                 <span class="co">#  T3RUPT</span>
+000029,000018:    4015           00006                           <span class="op">EXTEND  </span>                                       <span class="co">#  Back up A, L, and Q</span>
+000030,000019:    4016           22012                           <span class="op">QXCH    </span> <a href="Constants.agc.html#5152555054">QRUPT</a>                                 
+000031,000020:    4017           15005                           <span class="op">TCF     </span> <a href="Interrupts.agc.html#543352555054">T3RUPT</a>                                <span class="co">#  Transfer to the T3RUPT handler</span>
+000032,000021: 
+000033,000022:    4020           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  T4RUPT</span>
+000034,000023:    4021           14022                           <span class="op">NOOP    </span>                                       
+000035,000024:    4022           14023                           <span class="op">NOOP    </span>                                       
+000036,000025:    4023           14024                           <span class="op">NOOP    </span>                                       
+000037,000026: 
+000038,000027:    4024           52011                           <span class="op">DXCH    </span> <a href="Constants.agc.html#4152555054">ARUPT</a>                                 <span class="co">#  KEYRUPT1, fired whenever a key is pressed</span>
+000039,000028:    4025           00006                           <span class="op">EXTEND  </span>                                       
+000040,000029:    4026           22012                           <span class="op">QXCH    </span> <a href="Constants.agc.html#5152555054">QRUPT</a>                                 
+000041,000030:    4027           15014                           <span class="op">TCF     </span> <a href="Input.agc.html#4B45595255505431">KEYRUPT1</a>                              
+000042,000031: 
+000043,000032:    4030           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  KEYRUPT2</span>
+000044,000033:    4031           14032                           <span class="op">NOOP    </span>                                       
+000045,000034:    4032           14033                           <span class="op">NOOP    </span>                                       
+000046,000035:    4033           14034                           <span class="op">NOOP    </span>                                       
+000047,000036: 
+000048,000037:    4034           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  UPRUPT</span>
+000049,000038:    4035           14036                           <span class="op">NOOP    </span>                                       
+000050,000039:    4036           14037                           <span class="op">NOOP    </span>                                       
+000051,000040:    4037           14040                           <span class="op">NOOP    </span>                                       
+000052,000041: 
+000053,000042:    4040           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  DOWNRUPT</span>
+000054,000043:    4041           14042                           <span class="op">NOOP    </span>                                       
+000055,000044:    4042           14043                           <span class="op">NOOP    </span>                                       
+000056,000045:    4043           14044                           <span class="op">NOOP    </span>                                       
+000057,000046: 
+000058,000047:    4044           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  RADAR RUPT</span>
+000059,000048:    4045           14046                           <span class="op">NOOP    </span>                                       
+000060,000049:    4046           14047                           <span class="op">NOOP    </span>                                       
+000061,000050:    4047           14050                           <span class="op">NOOP    </span>                                       
+000062,000051: 
+000063,000052:    4050           50017                           <span class="op">RESUME  </span>                                       <span class="co">#  RUPT10</span>
+000064,000053:    4051           14052                           <span class="op">NOOP    </span>                                       
+000065,000054:    4052           14053                           <span class="op">NOOP    </span>                                       
+000066,000055:    4053           14054                           <span class="op">NOOP    </span>                                       
+000067,000056: 
 
 End of include-file Vectors.agc.  Parent file is <a href="Main.agc.html">Main.agc</a>
 </pre>

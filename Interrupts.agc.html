@@ -56,18 +56,18 @@ color: #993399;
 <span style="font-family: monospace;">
 <pre>
 <h1>Source Code</h1>
-000144,000001: 
-000145,000002:    4134                                           <span class="ps">BLOCK   </span> 02                                    
-<a name="543352555054"></a>000146,000003:    4134           34253        <span class="sm">T3RUPT  </span>           <span class="op">CAF     </span> <a href="Constants.agc.html#4F3337373734">O37774</a>                                <span class="co">#  Schedule another TIME3 interrupt</span>
-000147,000004:    4135           54026                           <span class="op">TS      </span> <a href="Ram.agc.html#54494D4533">TIME3</a>                                 <span class="co">#  ... and don't do anything else, yet...</span>
-000148,000005: 
-000149,000006:    4136           24103                           <span class="op">INCR    </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               
-000150,000007:                                                                                                  <span class="co"># TC     ERRORDSP</span>
-000151,000008: 
-<a name="524553554D45"></a>000152,000009:    4137           52011        <span class="sm">RESUME  </span>           <span class="op">DXCH    </span> <a href="Constants.agc.html#4152555054">ARUPT</a>                                 <span class="co">#  Restore A, L, and Q, and exit the interrupt</span>
-000153,000010:    4140           00006                           <span class="op">EXTEND  </span>                                       
-000154,000011:    4141           22012                           <span class="op">QXCH    </span> <a href="Constants.agc.html#5152555054">QRUPT</a>                                 
-000155,000012:    4142           50017                           <span class="op">RESUME  </span>                                       
+000915,000001: 
+000916,000002:    5005                                           <span class="ps">BLOCK   </span> 02                                    
+<a name="543352555054"></a>000917,000003:    5005                        <span class="sm">T3RUPT  </span>                                                          
+000918,000004:    5005           35133                           <span class="op">CAF     </span> <a href="Constants.agc.html#4F3337373734">O37774</a>                                <span class="co">#  Schedule another TIME3 interrupt</span>
+000919,000005:    5006           54026                           <span class="op">TS      </span> <a href="Ram.agc.html#54494D4533">TIME3</a>                                 <span class="co">#  ... and don't do anything else, yet...</span>
+000920,000006: 
+000921,000007:    5007           24074                           <span class="op">INCR    </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               <span class="co">#  Increment counter for random number generation</span>
+000922,000008: 
+<a name="524553554D45"></a>000923,000009:    5010           52011        <span class="sm">RESUME  </span>           <span class="op">DXCH    </span> <a href="Constants.agc.html#4152555054">ARUPT</a>                                 <span class="co">#  Restore A, L, and Q, and exit the interrupt</span>
+000924,000010:    5011           00006                           <span class="op">EXTEND  </span>                                       
+000925,000011:    5012           22012                           <span class="op">QXCH    </span> <a href="Constants.agc.html#5152555054">QRUPT</a>                                 
+000926,000012:    5013           50017                           <span class="op">RESUME  </span>                                       
 
 End of include-file Interrupts.agc.  Parent file is <a href="Main.agc.html">Main.agc</a>
 </pre>

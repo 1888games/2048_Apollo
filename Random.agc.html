@@ -56,25 +56,27 @@ color: #993399;
 <span style="font-family: monospace;">
 <pre>
 <h1>Source Code</h1>
-000222,000001: 
-<a name="52414E444F4D"></a>000223,000002:    4215                        <span class="sm">RANDOM  </span>                                                          
-000224,000003: 
-000225,000004: 
-000226,000005:    4215           00006                           <span class="op">EXTEND  </span>                                       
-000227,000006:    4216           22065                           <span class="op">QXCH    </span> <a href="Ram.agc.html#54454D504B">TEMPK</a>                                 
-000228,000007:    4217           24103                           <span class="op">INCR    </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               
-000229,000008:    4220           30103                           <span class="op">CA      </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               
-000230,000009:    4221           74244                           <span class="op">MASK    </span> <a href="Constants.agc.html#4D41534B313238">MASK128</a>                               
-000231,000010:    4222           54103                           <span class="op">TS      </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               
-000232,000011:    4223           50103                           <span class="op">INDEX   </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               
-000233,000012:    4224           34447                           <span class="op">CA      </span> <a href="Constants.agc.html#52414E4431">RAND1</a>                                 
-000234,000013:    4225           54102                           <span class="op">TS      </span> <a href="Ram.agc.html#53454544">SEED</a>                                  
-000235,000014: 
-000236,000015:    4226           00006                           <span class="op">EXTEND  </span>                                       
-000237,000016:    4227           22065                           <span class="op">QXCH    </span> <a href="Ram.agc.html#54454D504B">TEMPK</a>                                 
-000238,000017:    4230           00002                           <span class="op">RETURN  </span>                                       
-000239,000018: 
-000240,000019: 
+001030,000001: 
+<a name="52414E444F4D"></a>001031,000002:    5120                        <span class="sm">RANDOM  </span>                                                          
+001032,000003: 
+001033,000004:                                                                                                  <span class="co">#  I tried various methods for generating 'random' numbers. Most traditional methods are designed</span>
+001034,000005:                                                                                                  <span class="co">#  for 8-bit or 16-bit hardware, and the various xor 'magic numbers' are particular to that paradigm.</span>
+001035,000006:                                                                                                  <span class="co">#  I'm not patient enough to find values that might work. Using a fast-moving index into a lookup</span>
+001036,000007:                                                                                                  <span class="co">#  table should be 'good enough' for a game.</span>
+001037,000008: 
+001038,000009: 
+001039,000010:    5120           30025                           <span class="op">CA      </span> <a href="Ram.agc.html#54494D4531">TIME1</a>                                 <span class="co">#  Load a register that is updated very often by the hardware</span>
+001040,000011:    5121           60074                           <span class="op">AD      </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               <span class="co">#  Add previous value of counter in case we were so quick TIME1 didn't change</span>
+001041,000012:    5122           75143                           <span class="op">MASK    </span> <a href="Constants.agc.html#4D41534B313238">MASK128</a>                               <span class="co">#  Mask value so now between 0-127.</span>
+001042,000013:    5123           54074                           <span class="op">TS      </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               <span class="co">#  Store this as new counter</span>
+001043,000014:    5124           50074                           <span class="op">INDEX   </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               <span class="co">#  Index using value between 0-127</span>
+001044,000015:    5125           35361                           <span class="op">CA      </span> <a href="Tables.agc.html#52414E4431">RAND1</a>                                 <span class="co">#  Into a table of random numbers between 0 and 9 (generated in Excel)</span>
+001045,000016:    5126           24074                           <span class="op">INCR    </span> <a href="Ram.agc.html#434F554E544552">COUNTER</a>                               <span class="co">#  Move counter on one so next index unlikely to be the same</span>
+001046,000017: 
+001047,000018: 
+001048,000019:    5127           00002                           <span class="op">RETURN  </span>                                       
+001049,000020: 
+001050,000021: 
 
 End of include-file Random.agc.  Parent file is <a href="Main.agc.html">Main.agc</a>
 </pre>

@@ -1,4 +1,41 @@
 
+
+                 # DISPLAY ALL 15 SEGMENTS IN THE GAME GRID
+
+DISP15
+                EXTEND
+                QXCH    RET_ADR    # Store return address because we TC elsewhere
+
+                CA      DEC6       # Do top left cell first as its digit doesn't have a segment partner
+                TS      CUR_ID     # Use id for top left cell
+                TC      DISPNUM    # Call function to display this digit
+
+                INCR    CUR_ID     # Move onto next digit. The rest all come in pairs.
+
+SEGLOOP
+
+                TC      DISPNUM    # Call function to display next two digits.
+
+                INCR    CUR_ID     # Inc cell id, it's now +2 from before display call.
+                CA      TWENTY1    # Load id of last cell + 1
+                EXTEND
+                SU      CUR_ID     # Subtract current cell id
+                EXTEND
+                BZF     DONE15     # If zero, we displayed all cells
+
+                TS      NEWJOB     # Nudge watchdog as display code fairly slow
+
+                TCF     SEGLOOP    # Loop back to draw the next two segments
+
+
+DONE15
+                EXTEND
+                QXCH    RET_ADR    # Retrieve our return address
+                RETURN             # Return to caller (multiple places)
+
+
+
+
 DISPNUM         # CUR_ID is the index of next segment to display (0=left prog, 20 = digit 5 bottom row)
                 # Print value held in VALUES array to correct segment
 
@@ -62,3 +99,19 @@ OUTPUT
                 WRITE   CH10      # Send the value to channel 10 to display on DKSY
 
                 RETURN            # Return from subroutine
+
+
+
+                #Hold up CPU to delay between movement of numbers to give animation effect
+
+IODELAYT	DEC	1000      # This constant is stored in fixed ROM
+
+IODELAY
+                TS	TEMPI		# Save accumulator.
+		NOOP                    # Do thing for a bit
+		CA	IODELAYT        # Load delay into A
+		TS	NEWJOB          # Nudge watchdog as we're in a busy loop
+		CCS	A               # Decrement a and compare
+		TCF	-2              # >0 so jump back up to TS NEWJOB
+		CA	TEMPI		# Restore accumulator.
+		RETURN                  # Return to where delay was asked for

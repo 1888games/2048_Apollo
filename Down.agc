@@ -1,6 +1,4 @@
-
-
-MOVE_DOWN                       # The down key (8) has been pressed
+SETUPMOV
 
         CA      ZERO            # Load 0 into A
         TS      MATCHMD         # Clear array of 5 that indicates whether two numbers
@@ -8,6 +6,17 @@ MOVE_DOWN                       # The down key (8) has been pressed
         TS      MATCH2
         TS      MATCH3          # Otherwise moving left on a row of 0-0-1 would end as 2-x-x.
         TS      MATCH4          # When it should be 1-1-x.
+
+        RETURN
+
+MOVE_DOWN                       # The down key (8) has been pressed
+
+        TC      SETUPMOV    # Setup a table and check if can proceed - may never return!
+        CA      GM_DONE         # Load game complete status into A
+        EXTEND
+        BZF     MOVING_DN       # Flag is zero, not complete yet
+
+        TCF     MAINLOOP
 
 MOVING_DN                       # Once in a state of 'sta_down', come here each 'frame'
                                 # until no more cells can move down
@@ -78,32 +87,13 @@ D_NOSOF
 
 D_MATCH
 
-        INCR    PLAY_ID         # Increase counter as something is going to move
-
         INDEX   CELLCOL         # Index by the column these cells are in
-        INCR    MATCHMD         # Set flag that we have combined in this column
-
-        CA      CELL_VALUE      # Load value in original cell
-        AD      DEC1            # Add 1 because we are combining
-        INDEX   CHK_ID          # Index using cell below id
-        TS      VALUES          # Set cell below to be +1
-
-        CA      NEG_ONE         # Load -1 to A (empty)
-        INDEX   CUR_ID          # Index by original cell id
-        TS      VALUES          # Set original cell to now be empty
+        TC      UPGRADE          # Increase target cell, empty orig cell
 
         TCF     D_NOCOL         # Move along to next column
 MOV_DN
 
-        INCR    PLAY_ID         # We are moving a number into empty space. Inc move counter.
-
-        CA      CELL_VALUE      # Load the value in cell that's moving
-        INDEX   CHK_ID          # Index by cell below id
-        TS      VALUES          # Set cell below to value of original cell
-
-        CA      NEG_ONE         # Load -1 to A (empty)
-        INDEX   CUR_ID          # Index by original cell id
-        TS      VALUES          # Set original cell to now be empty
+        TC      CELL_MOV        # Move cell value to new cell, empty orig cell
 
 D_NOCOL                         # End of processing for this column
 
@@ -148,3 +138,57 @@ D_NOWT
         TC      IODELAY         # A little delay before adding so it's obvious where it went
 
         TCF     MAINLOOP        # Return to main loop which will add a new number next time
+
+
+CELL_MOV
+
+        INCR    PLAY_ID         # We are moving a number into empty space. Inc move counter.
+
+        CA      CELL_VALUE      # Load the value in cell that's moving
+        INDEX   CHK_ID          # Index by cell below id
+        TS      VALUES          # Set cell below to value of original cell
+
+        CA      NEG_ONE         # Load -1 to A (empty)
+        INDEX   CUR_ID          # Index by original cell id
+        TS      VALUES          # Set original cell to now be empty
+
+        RETURN
+
+UPGRADE
+
+
+        INCR    PLAY_ID         # Increase counter as something is going to move
+
+        CA      CELL_VALUE      # Load value in original cell
+        AD      DEC1            # Add 1 because we are combining
+        INDEX   CHK_ID          # Index using cell below id
+        TS      VALUES          # Set cell below to be +1
+        TS      TEMPI           # Save to temp var, we need to check if it's 9
+
+        CA      DEC9            # Load 9 into A
+        EXTEND
+        SU      TEMPI           # Subtract the value of combined cell
+        EXTEND
+        BZF     COMPLETE        # If zero, we must have made a 9, game complete
+
+        TCF     NOTCOMP         # If zero, we must have made a 9, game complete
+
+
+COMPLETE
+
+        CA      BIT5            # Load value where bit 5 = 1, rest 0 (key rel flash)
+        EXTEND
+        WRITE   CH11            # Output to DSKY lights IO channel
+        INCR    GM_DONE         # Set done flag so we don't allow further play'
+
+NOTCOMP
+
+
+        CA      NEG_ONE         # Load -1 to A (empty)
+        INDEX   CUR_ID          # Index by original cell id
+        TS      VALUES          # Set original cell to now be empty
+
+
+
+        RETURN
+

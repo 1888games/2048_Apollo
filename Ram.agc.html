@@ -56,48 +56,65 @@ color: #993399;
 <span style="font-family: monospace;">
 <pre>
 <h1>Source Code</h1>
-000561,000001: 
-000562,000002:                                                                                                  <span class="co"># -------------------------------------------------------------------------</span>
-000563,000003:                                                                                                  <span class="co">#  Some variables.</span>
-000564,000004: 
-000565,000005:    0024                                           <span class="ps">SETLOC  </span> 24                                    
-<a name="54494D4532"></a>000566,000006:    0024                        <span class="sm">TIME2   </span>           <span class="ps">ERASE   </span>                                       
-<a name="54494D4531"></a>000567,000007:    0025                        <span class="sm">TIME1   </span>           <span class="ps">ERASE   </span>                                       
-<a name="54494D4533"></a>000568,000008:    0026                        <span class="sm">TIME3   </span>           <span class="ps">ERASE   </span>                                       
-<a name="54494D4534"></a>000569,000009:    0027                        <span class="sm">TIME4   </span>           <span class="ps">ERASE   </span>                                       
-<a name="54494D4535"></a>000570,000010:    0030                        <span class="sm">TIME5   </span>           <span class="ps">ERASE   </span>                                       
-<a name="54494D4536"></a>000571,000011:    0031                        <span class="sm">TIME6   </span>           <span class="ps">ERASE   </span>                                       
-000572,000012: 
-000573,000013:    0061                                           <span class="ps">SETLOC  </span> 61                                    
-000574,000014: 
-<a name="4552524E554D"></a>000575,000015:    0061                        <span class="sm">ERRNUM  </span>           <span class="ps">ERASE   </span>                                       <span class="co">#  Error-code, reported to DSKY.</span>
-<a name="455252535542"></a>000576,000016:    0062                        <span class="sm">ERRSUB  </span>           <span class="ps">ERASE   </span>                                       <span class="co">#  Error-subcode.</span>
-000577,000017: 
-000578,000018:                                                                                                  <span class="co">#  Dummy variables.</span>
-<a name="54454D5049"></a>000579,000019:    0063                        <span class="sm">TEMPI   </span>           <span class="ps">ERASE   </span>                                       
-<a name="54454D504A"></a>000580,000020:    0064                        <span class="sm">TEMPJ   </span>           <span class="ps">ERASE   </span>                                       
-<a name="54454D504B"></a>000581,000021:    0065                        <span class="sm">TEMPK   </span>           <span class="ps">ERASE   </span>                                       
-000582,000022: 
-000583,000023: 
-000584,000024:    0067                                           <span class="ps">SETLOC  </span> 67                                    
-<a name="4E45574A4F42"></a>000585,000025:    0067                        <span class="sm">NEWJOB  </span>           <span class="ps">ERASE   </span>                                       
-000586,000026: 
-000587,000027:                                                                                                  <span class="co">#  For Smally's tests.</span>
-000588,000028:    0071                                           <span class="ps">SETLOC  </span> 71                                    
-000589,000029: 
-<a name="4D504143"></a>000590,000030:    0071                        <span class="sm">MPAC    </span>           <span class="ps">ERASE   </span> +6                                    <span class="co">#  MULTI-PURPOSE ACCUMULATOR.</span>
-<a name="5744524554"></a>000591,000031:    0100                        <span class="sm">WDRET   </span>           <span class="ps">ERASE   </span>                                       
-<a name="5744434E54"></a>000592,000032:    0101                        <span class="sm">WDCNT   </span>           <span class="ps">ERASE   </span>                                       
-<a name="53454544"></a>000593,000033:    0102                        <span class="sm">SEED    </span>           <span class="ps">ERASE   </span>                                       
-<a name="434F554E544552"></a>000594,000034:    0103                        <span class="sm">COUNTER </span>           <span class="ps">ERASE   </span>                                       
-000595,000035: 
-<a name="56414C554553"></a>000596,000036:    0104                        <span class="sm">VALUES  </span>           <span class="ps">ERASE   </span> +24                                   
-<a name="4355525F4944"></a>000597,000037:    0131                        <span class="sm">CUR_ID  </span>           <span class="ps">ERASE   </span>                                       
-<a name="5345475F4F5554"></a>000598,000038:    0132                        <span class="sm">SEG_OUT </span>           <span class="ps">ERASE   </span>                                       
-<a name="44534B595F4F5554"></a>000599,000039:    0133                        <span class="sm">DSKY_OUT</span>           <span class="ps">ERASE   </span>                                       
-<a name="44494749545F4C"></a>000600,000040:    0134                        <span class="sm">DIGIT_L </span>           <span class="ps">ERASE   </span>                                       
-<a name="44494749545F52"></a>000601,000041:    0135                        <span class="sm">DIGIT_R </span>           <span class="ps">ERASE   </span>                                       
-<a name="4E554D5F53454753"></a>000602,000042:    0136                        <span class="sm">NUM_SEGS</span>           <span class="ps">ERASE   </span>                                       
+001431,000001: 
+001432,000002:                                                                                                  <span class="co">#  The AGC has 2,000 words (4KB) of erasable memory. We only need a fraction for this game!</span>
+001433,000003: 
+001434,000004: 
+001435,000005:                                                                                                  <span class="co"># -------------------------------------------------------------------------</span>
+001436,000006:                                                                                                  <span class="co">#  Some variables.</span>
+001437,000007: 
+001438,000008:    0024                                           <span class="ps">SETLOC  </span> 24                                    
+<a name="54494D4532"></a>001439,000009:    0024                        <span class="sm">TIME2   </span>           <span class="ps">ERASE   </span>                                       
+<a name="54494D4531"></a>001440,000010:    0025                        <span class="sm">TIME1   </span>           <span class="ps">ERASE   </span>                                       
+<a name="54494D4533"></a>001441,000011:    0026                        <span class="sm">TIME3   </span>           <span class="ps">ERASE   </span>                                       
+<a name="54494D4534"></a>001442,000012:    0027                        <span class="sm">TIME4   </span>           <span class="ps">ERASE   </span>                                       
+<a name="54494D4535"></a>001443,000013:    0030                        <span class="sm">TIME5   </span>           <span class="ps">ERASE   </span>                                       
+<a name="54494D4536"></a>001444,000014:    0031                        <span class="sm">TIME6   </span>           <span class="ps">ERASE   </span>                                       
+001445,000015: 
+001446,000016:    0061                                           <span class="ps">SETLOC  </span> 61                                    
+001447,000017: 
+001448,000018:                                                                                                  <span class="co">#  Temp variables.</span>
+<a name="54454D5049"></a>001449,000019:    0061                        <span class="sm">TEMPI   </span>           <span class="ps">ERASE   </span>                                       
+<a name="54454D504A"></a>001450,000020:    0062                        <span class="sm">TEMPJ   </span>           <span class="ps">ERASE   </span>                                       
+<a name="54454D504B"></a>001451,000021:    0063                        <span class="sm">TEMPK   </span>           <span class="ps">ERASE   </span>                                       
+001452,000022: 
+001453,000023: 
+001454,000024:    0067                                           <span class="ps">SETLOC  </span> 67                                    
+<a name="4E45574A4F42"></a>001455,000025:    0067                        <span class="sm">NEWJOB  </span>           <span class="ps">ERASE   </span>                                       
+001456,000026: 
+001457,000027: 
+<a name="4B4559425546"></a>001458,000028:    0070                        <span class="sm">KEYBUF  </span>           <span class="ps">ERASE   </span>                                       
+<a name="5245545F414452"></a>001459,000029:    0071                        <span class="sm">RET_ADR </span>           <span class="ps">ERASE   </span>                                       
+<a name="5245545F41445232"></a>001460,000030:    0072                        <span class="sm">RET_ADR2</span>           <span class="ps">ERASE   </span>                                       
+001461,000031: 
+<a name="414354495645"></a>001462,000032:    0073                        <span class="sm">ACTIVE  </span>           <span class="ps">ERASE   </span>                                       
+<a name="434F554E544552"></a>001463,000033:    0074                        <span class="sm">COUNTER </span>           <span class="ps">ERASE   </span>                                       
+<a name="4355525F4944"></a>001464,000034:    0075                        <span class="sm">CUR_ID  </span>           <span class="ps">ERASE   </span>                                       
+<a name="5345475F4F5554"></a>001465,000035:    0076                        <span class="sm">SEG_OUT </span>           <span class="ps">ERASE   </span>                                       
+<a name="43484B5F4944"></a>001466,000036:    0077                        <span class="sm">CHK_ID  </span>           <span class="ps">ERASE   </span>                                       
+<a name="43454C4C5F56414C"></a>001467,000037:    0100                        <span class="sm">CELL_VALUE</span>           <span class="ps">ERASE   </span>                                       
+<a name="474D5F5354415445"></a>001468,000038:    0101                        <span class="sm">GM_STATE</span>           <span class="ps">ERASE   </span>                                       
+<a name="43484B5F56414C55"></a>001469,000039:    0102                        <span class="sm">CHK_VALUE</span>           <span class="ps">ERASE   </span>                                       
+<a name="4D415443484D44"></a>001470,000040:    0103                        <span class="sm">MATCHMD </span>           <span class="ps">ERASE   </span>                                       
+<a name="4D4154434831"></a>001471,000041:    0104                        <span class="sm">MATCH1  </span>           <span class="ps">ERASE   </span>                                       
+<a name="4D4154434832"></a>001472,000042:    0105                        <span class="sm">MATCH2  </span>           <span class="ps">ERASE   </span>                                       
+<a name="4D4154434833"></a>001473,000043:    0106                        <span class="sm">MATCH3  </span>           <span class="ps">ERASE   </span>                                       
+<a name="4D4154434834"></a>001474,000044:    0107                        <span class="sm">MATCH4  </span>           <span class="ps">ERASE   </span>                                       
+<a name="43454C4C524F57"></a>001475,000045:    0110                        <span class="sm">CELLROW </span>           <span class="ps">ERASE   </span>                                       
+<a name="43454C4C434F4C"></a>001476,000046:    0111                        <span class="sm">CELLCOL </span>           <span class="ps">ERASE   </span>                                       
+<a name="474D5F444F4E45"></a>001477,000047:    0112                        <span class="sm">GM_DONE </span>           <span class="ps">ERASE   </span>                                       
+001478,000048: 
+<a name="524F575F4944"></a>001479,000049:    0113                        <span class="sm">ROW_ID  </span>           <span class="ps">ERASE   </span>                                       
+<a name="434F4C5F4944"></a>001480,000050:    0114                        <span class="sm">COL_ID  </span>           <span class="ps">ERASE   </span>                                       
+<a name="454E445F4944"></a>001481,000051:    0115                        <span class="sm">END_ID  </span>           <span class="ps">ERASE   </span>                                       
+<a name="44534B595F4F5554"></a>001482,000052:    0116                        <span class="sm">DSKY_OUT</span>           <span class="ps">ERASE   </span>                                       
+<a name="44494749545F4C"></a>001483,000053:    0117                        <span class="sm">DIGIT_L </span>           <span class="ps">ERASE   </span>                                       
+<a name="44494749545F52"></a>001484,000054:    0120                        <span class="sm">DIGIT_R </span>           <span class="ps">ERASE   </span>                                       
+<a name="494E505554425546"></a>001485,000055:    0121                        <span class="sm">INPUTBUF</span>           <span class="ps">ERASE   </span>                                       
+<a name="42544E4D41534B"></a>001486,000056:    0122                        <span class="sm">BTNMASK </span>           <span class="ps">ERASE   </span>                                       
+<a name="504C41595F4944"></a>001487,000057:    0123                        <span class="sm">PLAY_ID </span>           <span class="ps">ERASE   </span>                                       
+001488,000058: 
+<a name="56414C554553"></a>001489,000059:    0124                        <span class="sm">VALUES  </span>           <span class="ps">ERASE   </span> +21                                   
 
 End of include-file Ram.agc.  Parent file is <a href="Main.agc.html">Main.agc</a>
 </pre>

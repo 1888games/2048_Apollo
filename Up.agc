@@ -4,13 +4,12 @@
 
 MOVE_UP
 
-        CA      ZERO
-        TS      MATCHMD
-        TS      MATCH1
-        TS      MATCH2
-        TS      MATCH3
-        TS      MATCH4
+        TC      SETUPMOV    # Setup a table and check if can proceed - may never return!
+        CA      GM_DONE         # Load game complete status into A
+        EXTEND
+        BZF     MOVING_UP       # Flag is zero, not complete yet
 
+        TCF     MAINLOOP
 
 MOVING_UP
 
@@ -80,20 +79,11 @@ U_NOSOF
 U_MATCH
 
         INDEX   CELLCOL
-        INCR    MATCHMD
+        INCR    MATCHMD         # Set flag that we have combined in this column
 
-        INCR    PLAY_ID
+        TC      UPGRADE          # Increase target cell, empty orig cell
 
-        CA      CELL_VALUE
-        AD      DEC1
-        INDEX   CHK_ID
-        TS      VALUES
-
-        CA      NEG_ONE
-        INDEX   CUR_ID
-        TS      VALUES
-
-         TCF    U_NOCOL
+        TCF    U_NOCOL
 MOV_UP
 
         INCR    PLAY_ID

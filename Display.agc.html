@@ -56,70 +56,123 @@ color: #993399;
 <span style="font-family: monospace;">
 <pre>
 <h1>Source Code</h1>
-000079,000001: 
-<a name="444953504E554D"></a>000080,000002:    4065                        <span class="sm">DISPNUM </span>                                                          <span class="co">#  CUR_ID is the index of next segment to display (0=left prog, 20 = digit 5 bottom row)</span>
-000081,000003:                                                                                                  <span class="co">#  Print value held in VALUES array to correct segment</span>
-000082,000004: 
-000083,000005:                                                                                                  <span class="co">#  Data is sent to the DSKY via Channel 10 two digits at a time.</span>
-000084,000006:                                                                                                  <span class="co">#  Bits 10-14 select which pair of digits we want to draw</span>
-000085,000007:                                                                                                  <span class="co">#  Bits 0-4 selects which digit to draw on the right segment</span>
-000086,000008:                                                                                                  <span class="co">#  Bits 5-9 selects which digit to draw on the left segment</span>
-000087,000009: 
-000088,000010:    4065           30007                           <span class="op">CA      </span> <a href="Constants.agc.html#5A45524F4553">ZEROES</a>                                <span class="co">#  Load 0 into accumulator from a fixed rom constant</span>
-000089,000011:    4066           54134                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F4C">DIGIT_L</a>                               <span class="co">#  Reset left digit calculation to 0 (empty)</span>
-000090,000012:    4067           54135                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F52">DIGIT_R</a>                               <span class="co">#  Reset right digit calculation to 0 (empty)</span>
-000091,000013: 
-000092,000014:    4070           50131                           <span class="op">INDEX   </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Index next instruction by segment id</span>
-000093,000015:    4071           34375                           <span class="op">CA      </span> <a href="Constants.agc.html#5345475F30">SEG_0</a>                                 <span class="co">#  Get which pair of digits this segment belongs to</span>
-000094,000016:    4072           54132                           <span class="op">TS      </span> <a href="Ram.agc.html#5345475F4F5554">SEG_OUT</a>                               <span class="co">#  Save ID to RAM</span>
-000095,000017: 
-000096,000018:    4073           50132                           <span class="op">INDEX   </span> <a href="Ram.agc.html#5345475F4F5554">SEG_OUT</a>                               <span class="co">#  Index next instruction by segment pair id</span>
-000097,000019:    4074           34422                           <span class="op">CA      </span> <a href="Constants.agc.html#534547434F4445">SEGCODE</a>                               <span class="co">#  Get value required in bits 10-14 to select pair, using id</span>
-000098,000020:    4075           54133                           <span class="op">TS      </span> <a href="Ram.agc.html#44534B595F4F5554">DSKY_OUT</a>                              <span class="co">#  Save to RAM to use later when we have the digit data</span>
-000099,000021: 
-000100,000022:    4076           50131                           <span class="op">INDEX   </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Index next instruction by segment id</span>
-000101,000023:    4077           30104                           <span class="op">CA      </span> <a href="Ram.agc.html#56414C554553">VALUES</a>                                <span class="co">#  Get the value in RAM we want to display here</span>
-000102,000024:    4100           54063                           <span class="op">TS      </span> <a href="Ram.agc.html#54454D5049">TEMPI</a>                                 <span class="co">#  Save to temporary RAM variable</span>
-000103,000025: 
-000104,000026:    4101           50131                           <span class="op">INDEX   </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Index next instruction by segment id</span>
-000105,000027:    4102           34350                           <span class="op">CA      </span> <a href="Constants.agc.html#4C45465452494748">LEFTRIGHT</a>                             <span class="co">#  Get whether this segment is left or right of its pair</span>
-000106,000028:    4103           00006                           <span class="op">EXTEND  </span>                                       <span class="co">#  Extend to use a new Block 2 AGC instruction</span>
-000107,000029:    4104           14123                           <span class="op">BZF     </span> <a href="#534B49504C454654">SKIPLEFT</a>                              <span class="co">#  If zero (is right), skip the left digit</span>
-000108,000030: 
-<a name="43414C434C454654"></a>000109,000031:    4105                        <span class="sm">CALCLEFT</span>                                                          
-000110,000032:    4105           50063                           <span class="op">INDEX   </span> <a href="Ram.agc.html#54454D5049">TEMPI</a>                                 <span class="co">#  Index next instruction by our digit (0-9)</span>
-000111,000033:    4106           34232                           <span class="op">CA      </span> <a href="Constants.agc.html#44535030">DSP0</a>                                  <span class="co">#  Get the 5-bit code for this digit to send to DSKY</span>
-000112,000034:    4107           54022                           <span class="op">TS      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Transfer it to the shift left register</span>
-000113,000035:    4110           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 1</span>
-000114,000036:    4111           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 2</span>
-000115,000037:    4112           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 3</span>
-000116,000038:    4113           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 4</span>
-000117,000039:    4114           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 5 (is now in bits 5-9 for the left digit)</span>
-000118,000040:    4115           54134                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F4C">DIGIT_L</a>                               <span class="co">#  Save to RAM to use later</span>
-000119,000041: 
-000120,000042:    4116           24131                           <span class="op">INCR    </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Move onto the right segment of the pair</span>
-000121,000043:    4117           50131                           <span class="op">INDEX   </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Index by new segment id</span>
-000122,000044:    4120           30104                           <span class="op">CA      </span> <a href="Ram.agc.html#56414C554553">VALUES</a>                                <span class="co">#  Get value to display on right digit</span>
-000123,000045:    4121           54135                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F52">DIGIT_R</a>                               <span class="co">#  Save to RAM to use later</span>
-000124,000046: 
-000125,000047:    4122           14125                           <span class="op">TCF     </span> <a href="#4449444C454654">DIDLEFT</a>                               <span class="co">#  Skip the code to set only the right digit if left not drawn</span>
-000126,000048: 
-<a name="534B49504C454654"></a>000127,000049:    4123                        <span class="sm">SKIPLEFT</span>                                                          
-000128,000050:    4123           30063                           <span class="op">CA      </span> <a href="Ram.agc.html#54454D5049">TEMPI</a>                                 <span class="co">#  Load the value for this digit to draw on the right of pair</span>
-000129,000051:    4124           54135                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F52">DIGIT_R</a>                               <span class="co">#  Store to RAM</span>
-000130,000052: 
-<a name="4449444C454654"></a>000131,000053:    4125                        <span class="sm">DIDLEFT </span>                                                          
-000132,000054: 
-000133,000055:    4125           50135                           <span class="op">INDEX   </span> <a href="Ram.agc.html#44494749545F52">DIGIT_R</a>                               <span class="co">#  Index by value of right digit</span>
-000134,000056:    4126           34232                           <span class="op">CA      </span> <a href="Constants.agc.html#44535030">DSP0</a>                                  <span class="co">#  Get the 5-bit code for this digit to send to DSKY</span>
-000135,000057: 
-<a name="4F5554505554"></a>000136,000058:    4127                        <span class="sm">OUTPUT  </span>                                                          
-000137,000059:    4127           60133                           <span class="op">AD      </span> <a href="Ram.agc.html#44534B595F4F5554">DSKY_OUT</a>                              <span class="co">#  Add bits 10-14</span>
-000138,000060:    4130           60134                           <span class="op">AD      </span> <a href="Ram.agc.html#44494749545F4C">DIGIT_L</a>                               <span class="co">#  Add bits 5-9</span>
-000139,000061:    4131           00006                           <span class="op">EXTEND  </span>                                       <span class="co">#  Extend in order to use I/O channel instruction</span>
-000140,000062:    4132           01010                           <span class="op">WRITE   </span> <a href="Constants.agc.html#43483130">CH10</a>                                  <span class="co">#  Send the value to channel 10 to display on DKSY</span>
-000141,000063: 
-000142,000064:    4133           00002                           <span class="op">RETURN  </span>                                       <span class="co">#  Return from subroutine</span>
+000797,000001: 
+000798,000002: 
+000799,000003:                                                                                                  <span class="co">#  DISPLAY ALL 15 SEGMENTS IN THE GAME GRID</span>
+000800,000004: 
+<a name="444953503135"></a>000801,000005:    4703                        <span class="sm">DISP15  </span>                                                          
+000802,000006:    4703           00006                           <span class="op">EXTEND  </span>                                       
+000803,000007:    4704           22071                           <span class="op">QXCH    </span> <a href="Ram.agc.html#5245545F414452">RET_ADR</a>                               <span class="co">#  Store return address because we TC elsewhere</span>
+000804,000008: 
+000805,000009:    4705           35261                           <span class="op">CA      </span> <a href="Tables.agc.html#44454336">DEC6</a>                                  <span class="co">#  Do top left cell first as its digit doesn't have a segment partner</span>
+000806,000010:    4706           54075                           <span class="op">TS      </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Use id for top left cell</span>
+000807,000011:    4707           04725                           <span class="op">TC      </span> <a href="#444953504E554D">DISPNUM</a>                               <span class="co">#  Call function to display this digit</span>
+000808,000012: 
+000809,000013:    4710           24075                           <span class="op">INCR    </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Move onto next digit. The rest all come in pairs.</span>
+000810,000014: 
+<a name="5345474C4F4F50"></a>000811,000015:    4711                        <span class="sm">SEGLOOP </span>                                                          
+000812,000016: 
+000813,000017:    4711           04725                           <span class="op">TC      </span> <a href="#444953504E554D">DISPNUM</a>                               <span class="co">#  Call function to display next two digits.</span>
+000814,000018: 
+000815,000019:    4712           24075                           <span class="op">INCR    </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Inc cell id, it's now +2 from before display call.</span>
+000816,000020:    4713           35142                           <span class="op">CA      </span> <a href="Constants.agc.html#5457454E545931">TWENTY1</a>                               <span class="co">#  Load id of last cell + 1</span>
+000817,000021:    4714           00006                           <span class="op">EXTEND  </span>                                       
+000818,000022:    4715           60075                           <span class="op">SU      </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Subtract current cell id</span>
+000819,000023:    4716           00006                           <span class="op">EXTEND  </span>                                       
+000820,000024:    4717           14722                           <span class="op">BZF     </span> <a href="#444F4E453135">DONE15</a>                                <span class="co">#  If zero, we displayed all cells</span>
+000821,000025: 
+000822,000026:    4720           54067                           <span class="op">TS      </span> <a href="Ram.agc.html#4E45574A4F42">NEWJOB</a>                                <span class="co">#  Nudge watchdog as display code fairly slow</span>
+000823,000027: 
+000824,000028:    4721           14711                           <span class="op">TCF     </span> <a href="#5345474C4F4F50">SEGLOOP</a>                               <span class="co">#  Loop back to draw the next two segments</span>
+000825,000029: 
+000826,000030: 
+<a name="444F4E453135"></a>000827,000031:    4722                        <span class="sm">DONE15  </span>                                                          
+000828,000032:    4722           00006                           <span class="op">EXTEND  </span>                                       
+000829,000033:    4723           22071                           <span class="op">QXCH    </span> <a href="Ram.agc.html#5245545F414452">RET_ADR</a>                               <span class="co">#  Retrieve our return address</span>
+000830,000034:    4724           00002                           <span class="op">RETURN  </span>                                       <span class="co">#  Return to caller (multiple places)</span>
+000831,000035: 
+000832,000036: 
+000833,000037: 
+000834,000038: 
+<a name="444953504E554D"></a>000835,000039:    4725                        <span class="sm">DISPNUM </span>                                                          <span class="co">#  CUR_ID is the index of next segment to display (0=left prog, 20 = digit 5 bottom row)</span>
+000836,000040:                                                                                                  <span class="co">#  Print value held in VALUES array to correct segment</span>
+000837,000041: 
+000838,000042:                                                                                                  <span class="co">#  Data is sent to the DSKY via Channel 10 two digits at a time.</span>
+000839,000043:                                                                                                  <span class="co">#  Bits 10-14 select which pair of digits we want to draw</span>
+000840,000044:                                                                                                  <span class="co">#  Bits 0-4 selects which digit to draw on the right segment</span>
+000841,000045:                                                                                                  <span class="co">#  Bits 5-9 selects which digit to draw on the left segment</span>
+000842,000046: 
+000843,000047:    4725           30007                           <span class="op">CA      </span> <a href="Constants.agc.html#5A45524F4553">ZEROES</a>                                <span class="co">#  Load 0 into accumulator from a fixed rom constant</span>
+000844,000048:    4726           54117                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F4C">DIGIT_L</a>                               <span class="co">#  Reset left digit calculation to 0 (empty)</span>
+000845,000049:    4727           54120                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F52">DIGIT_R</a>                               <span class="co">#  Reset right digit calculation to 0 (empty)</span>
+000846,000050: 
+000847,000051:    4730           50075                           <span class="op">INDEX   </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Index next instruction by segment id</span>
+000848,000052:    4731           35213                           <span class="op">CA      </span> <a href="Tables.agc.html#5345475F30">SEG_0</a>                                 <span class="co">#  Get which pair of digits this segment belongs to</span>
+000849,000053:    4732           54076                           <span class="op">TS      </span> <a href="Ram.agc.html#5345475F4F5554">SEG_OUT</a>                               <span class="co">#  Save ID to RAM</span>
+000850,000054: 
+000851,000055:    4733           50076                           <span class="op">INDEX   </span> <a href="Ram.agc.html#5345475F4F5554">SEG_OUT</a>                               <span class="co">#  Index next instruction by segment pair id</span>
+000852,000056:    4734           35240                           <span class="op">CA      </span> <a href="Tables.agc.html#534547434F4445">SEGCODE</a>                               <span class="co">#  Get value required in bits 10-14 to select pair, using id</span>
+000853,000057:    4735           54116                           <span class="op">TS      </span> <a href="Ram.agc.html#44534B595F4F5554">DSKY_OUT</a>                              <span class="co">#  Save to RAM to use later when we have the digit data</span>
+000854,000058: 
+000855,000059:    4736           50075                           <span class="op">INDEX   </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Index next instruction by segment id</span>
+000856,000060:    4737           30124                           <span class="op">CA      </span> <a href="Ram.agc.html#56414C554553">VALUES</a>                                <span class="co">#  Get the value in RAM we want to display here</span>
+000857,000061:    4740           54061                           <span class="op">TS      </span> <a href="Ram.agc.html#54454D5049">TEMPI</a>                                 <span class="co">#  Save to temporary RAM variable</span>
+000858,000062: 
+000859,000063:    4741           50075                           <span class="op">INDEX   </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Index next instruction by segment id</span>
+000860,000064:    4742           35166                           <span class="op">CA      </span> <a href="Tables.agc.html#4C45465452494748">LEFTRIGHT</a>                             <span class="co">#  Get whether this segment is left or right of its pair</span>
+000861,000065:    4743           00006                           <span class="op">EXTEND  </span>                                       <span class="co">#  Extend to use a new Block 2 AGC instruction</span>
+000862,000066:    4744           14763                           <span class="op">BZF     </span> <a href="#534B49504C454654">SKIPLEFT</a>                              <span class="co">#  If zero (is right), skip the left digit</span>
+000863,000067: 
+<a name="43414C434C454654"></a>000864,000068:    4745                        <span class="sm">CALCLEFT</span>                                                          
+000865,000069:    4745           50061                           <span class="op">INDEX   </span> <a href="Ram.agc.html#54454D5049">TEMPI</a>                                 <span class="co">#  Index next instruction by our digit (0-9)</span>
+000866,000070:    4746           35154                           <span class="op">CA      </span> <a href="Tables.agc.html#44535030">DSP0</a>                                  <span class="co">#  Get the 5-bit code for this digit to send to DSKY</span>
+000867,000071:    4747           54022                           <span class="op">TS      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Transfer it to the shift left register</span>
+000868,000072:    4750           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 1</span>
+000869,000073:    4751           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 2</span>
+000870,000074:    4752           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 3</span>
+000871,000075:    4753           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 4</span>
+000872,000076:    4754           30022                           <span class="op">CA      </span> <a href="Constants.agc.html#43594C">CYL</a>                                   <span class="co">#  Shift left no 5 (is now in bits 5-9 for the left digit)</span>
+000873,000077:    4755           54117                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F4C">DIGIT_L</a>                               <span class="co">#  Save to RAM to use later</span>
+000874,000078: 
+000875,000079:    4756           24075                           <span class="op">INCR    </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Move onto the right segment of the pair</span>
+000876,000080:    4757           50075                           <span class="op">INDEX   </span> <a href="Ram.agc.html#4355525F4944">CUR_ID</a>                                <span class="co">#  Index by new segment id</span>
+000877,000081:    4760           30124                           <span class="op">CA      </span> <a href="Ram.agc.html#56414C554553">VALUES</a>                                <span class="co">#  Get value to display on right digit</span>
+000878,000082:    4761           54120                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F52">DIGIT_R</a>                               <span class="co">#  Save to RAM to use later</span>
+000879,000083: 
+000880,000084:    4762           14765                           <span class="op">TCF     </span> <a href="#4449444C454654">DIDLEFT</a>                               <span class="co">#  Skip the code to set only the right digit if left not drawn</span>
+000881,000085: 
+<a name="534B49504C454654"></a>000882,000086:    4763                        <span class="sm">SKIPLEFT</span>                                                          
+000883,000087:    4763           30061                           <span class="op">CA      </span> <a href="Ram.agc.html#54454D5049">TEMPI</a>                                 <span class="co">#  Load the value for this digit to draw on the right of pair</span>
+000884,000088:    4764           54120                           <span class="op">TS      </span> <a href="Ram.agc.html#44494749545F52">DIGIT_R</a>                               <span class="co">#  Store to RAM</span>
+000885,000089: 
+<a name="4449444C454654"></a>000886,000090:    4765                        <span class="sm">DIDLEFT </span>                                                          
+000887,000091: 
+000888,000092:    4765           50120                           <span class="op">INDEX   </span> <a href="Ram.agc.html#44494749545F52">DIGIT_R</a>                               <span class="co">#  Index by value of right digit</span>
+000889,000093:    4766           35154                           <span class="op">CA      </span> <a href="Tables.agc.html#44535030">DSP0</a>                                  <span class="co">#  Get the 5-bit code for this digit to send to DSKY</span>
+000890,000094: 
+<a name="4F5554505554"></a>000891,000095:    4767                        <span class="sm">OUTPUT  </span>                                                          
+000892,000096:    4767           60116                           <span class="op">AD      </span> <a href="Ram.agc.html#44534B595F4F5554">DSKY_OUT</a>                              <span class="co">#  Add bits 10-14</span>
+000893,000097:    4770           60117                           <span class="op">AD      </span> <a href="Ram.agc.html#44494749545F4C">DIGIT_L</a>                               <span class="co">#  Add bits 5-9</span>
+000894,000098:    4771           00006                           <span class="op">EXTEND  </span>                                       <span class="co">#  Extend in order to use I/O channel instruction</span>
+000895,000099:    4772           01010                           <span class="op">WRITE   </span> <a href="Constants.agc.html#43483130">CH10</a>                                  <span class="co">#  Send the value to channel 10 to display on DKSY</span>
+000896,000100: 
+000897,000101:    4773           00002                           <span class="op">RETURN  </span>                                       <span class="co">#  Return from subroutine</span>
+000898,000102: 
+000899,000103: 
+000900,000104: 
+000901,000105:                                                                                                  <span class="co"># Hold up CPU to delay between movement of numbers to give animation effect</span>
+000902,000106: 
+<a name="494F44454C415954"></a>000903,000107:    4774           01750        <span class="sm">IODELAYT</span>           <span class="ps">DEC     </span> 1000       B-14                       <span class="co">#  This constant is stored in fixed ROM</span>
+000904,000108: 
+<a name="494F44454C4159"></a>000905,000109:    4775                        <span class="sm">IODELAY </span>                                                          
+000906,000110:    4775           54061                           <span class="op">TS      </span> <a href="Ram.agc.html#54454D5049">TEMPI</a>                                 <span class="co">#  Save accumulator.</span>
+000907,000111:    4776           14777                           <span class="op">NOOP    </span>                                       <span class="co">#  Do thing for a bit</span>
+000908,000112:    4777           34774                           <span class="op">CA      </span> <a href="#494F44454C415954">IODELAYT</a>                              <span class="co">#  Load delay into A</span>
+000909,000113:    5000           54067                           <span class="op">TS      </span> <a href="Ram.agc.html#4E45574A4F42">NEWJOB</a>                                <span class="co">#  Nudge watchdog as we're in a busy loop</span>
+000910,000114:    5001           10000                           <span class="op">CCS     </span> <a href="Constants.agc.html#41">A</a>                                     <span class="co">#  Decrement a and compare</span>
+000911,000115:    5002           15000                           <span class="op">TCF     </span> -2                                    <span class="co">#  >0 so jump back up to TS NEWJOB</span>
+000912,000116:    5003           30061                           <span class="op">CA      </span> <a href="Ram.agc.html#54454D5049">TEMPI</a>                                 <span class="co">#  Restore accumulator.</span>
+000913,000117:    5004           00002                           <span class="op">RETURN  </span>                                       <span class="co">#  Return to where delay was asked for</span>
 
 End of include-file Display.agc.  Parent file is <a href="Main.agc.html">Main.agc</a>
 </pre>
