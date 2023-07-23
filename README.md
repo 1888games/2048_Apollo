@@ -39,7 +39,7 @@ And by far the handiest instruction is the INDEX instruction. It can preceed any
     INDEX  ARRAY_ID
     CA    MY_ARRAY
 
-Will load the Nth value in MY_ARRAY depending on the value in the ARRAY_ID address. Or you can do INDEX A to index from the accumulator, INDEX a TCF instruction to create a jump table, INDEX a TS to store directly into an array position. I believe the index can even be negative!
+Will load the Nth value in MY_ARRAY depending on the value in the ARRAY_ID address. Or you can do INDEX A to index from the accumulator, INDEX a TCF instruction to create a jump table, INDEX a TS to store directly into an array position. The index value can even be negative!
 
 
 
