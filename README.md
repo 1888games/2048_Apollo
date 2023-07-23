@@ -2,6 +2,11 @@
 
 This is a port of the popular mobile game 2048 for the Apollo Guidance Computer.
 
+Instead of making 2048, you need to create a 9 (the equivalent of 1024 in the original game).
+
+Press any key to begin, then use the 2, 4, 6, and 8 keys to 'swipe' all the numbers in that direction. When two numbers of the same value crash into each other, they merge to form the next number. Create a 9 to complete the game! You can press Enter or Restart to start the game again.
+
+
 The game is written in AGC assembly, just like the Command Module and Lunar Lander software from the Apollo missions.
 
 Fortunately, unlike the pioneering programmers of that software, I didn't have to enter my code onto punch cards and then wait two months for it to be hand-woven into core rope memory. The joys of modern technology means it assembles in milliseconds and can then be tested in a Linux-based emulator, VirtualAGC. 
