@@ -24,15 +24,15 @@ https://www.ibiblio.org/apollo/download.html
 
 Some common instructions I used a lot in this code and their nearest 6502 equivalent:
 
-CA      LDA   Load into accumulator (no immediate mode, must be address)
-TS      STA   Store accumulator into RAM
-TCF     JMP   Jump to label
-TC      JSR   Jump to subroutine
-RETURN  RTS   Return from subroutine (no stack, so for nested routines you need to save return address)
-BZF     BEQ   Branch if A = zero
-AD      ADC   Add to accumulator (no immediate mode, must be address)
-SU      SBC   Subtract from accumulator (as above)
-INCR    INC   Increment value held in address (A register is address 0)
+    CA      LDA   Load into accumulator (no immediate mode, must be address)
+    TS      STA   Store accumulator into RAM
+    TCF     JMP   Jump to label
+    TC      JSR   Jump to subroutine
+    RETURN  RTS   Return from subroutine (no stack, so for nested routines you need to save return address)
+    BZF     BEQ   Branch if A = zero
+    AD      ADC   Add to accumulator (no immediate mode, must be address)
+    SU      SBC   Subtract from accumulator (as above)
+    INCR    INC   Increment value held in address (A register is address 0)
 
 And by far the handiest instruction is the INDEX instruction. It can preceed any instruction that has an address operand, and that instruction will then use that index value added to the base address. For example:
 
