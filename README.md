@@ -12,3 +12,8 @@ This website was an essential resource, it contains everything anyone would ever
 
 http://www.ibiblio.org/apollo/
 
+I am working on how to make this easy to run for everyone, as I had some trouble with the Windows version of VirtualAGC - for now the 'easiest' way is to run the Linux Virtual Box which has everything already set up. Hopefully I will be able to compile a version of MoonJS, a Javascript port of VirtualAGC, with my binary included - currently it only runs the included Apollo software.
+
+https://www.ibiblio.org/apollo/download.html
+
+
