@@ -1,5 +1,5 @@
-Apollo Guidance Computer (AGC) assembler, version 2017-04-17, built Apr 17 2017, target AGC4
-(c)2003-2005,2009-2010,2016 Ronald S. Burkey
+Apollo Guidance Computer (AGC) assembler, version 2017-06-19, built Aug 31 2017, target AGC4
+(c)2003-2005,2009-2010,2016,2017 Ronald S. Burkey
 Refer to http://www.ibiblio.org/apollo/index.html for more information.
 Pass #1
 Pass #2
@@ -65,7 +65,7 @@ Pass #3
 000059,000048:    4052           14053                           NOOP                                   	#
 000060,000049:    4053           14054                           NOOP                                   	#
 000061,000050: 
-000062,000051:    4054           04100        KEYRPTBB           BBCON    KEYRUPT1                      	#
+000062,000051:    4054           04000        KEYRPTBB           BBCON    KEYRUPT1                      	#
 (End of include-file Vectors.agc, resuming Main.agc)
 000063,000012: 
 000064,000013:                                                                                          	# Initialization.
@@ -751,4 +751,4 @@ Removing the duplicated lines...
 
 Symbol-table file written.
 
-Bugger word 66420 at 02,2651.
+Bugger word 66520 at 02,2651.
