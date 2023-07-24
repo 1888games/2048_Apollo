@@ -38,6 +38,6 @@ And by far the handiest one is the INDEX instruction. It can preceed any instruc
 
 Will load the Nth value in MY_ARRAY depending on the value in the ARRAY_ID address. Or you can do INDEX A to index from the accumulator, INDEX a TCF instruction to create a jump table, INDEX a TS to store directly into an array position. The index value can even be negative!
 
-
+You'll also notice the EXTEND instruction pop up through out the code. The original 'Block 1' AGC had a much smaller instruction set. As they didn't want to change the architecture too much to accomodate more instructions, the EXTEND instruct basically says the next instruction is a new 'Block 2' instruction. So many assembly errors were down to me forgetting to put EXTEND before SU or BZF...thankfully the yaYUL assembler does spit out exceptionally clear error messages so you know exactly what you've done wrong.
 
 
