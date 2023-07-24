@@ -13,7 +13,7 @@ Press any key to begin, then use the 2, 4, 6, and 8 keys to 'swipe' all the numb
 
 The game is written in AGC assembly, just like the Command Module and Lunar Lander software from the Apollo missions, and takes up just over 75% of one 2K-word fixed memory bank, or around 3Kb. 
 
-Fortunately, unlike the pioneering programmers of that software, I didn't have to enter my code onto punch cards (one per instruction, two if the comment was long...) and then wait two months for it to be hand-woven into core rope memory. The joys of modern technology means it assembles in milliseconds and can then be tested in a Linux-based emulator, VirtualAGC. 
+Fortunately, unlike the pioneering programmers of that software, I didn't have to enter my code onto punch cards (one per instruction, two if the comment was long...), saved onto tape and then wait two months for it to be hand-woven into core rope memory. The joys of modern technology means it assembles in milliseconds and can then be tested in a Linux-based emulator, VirtualAGC. 
 
 I have commented each line of code to show what it does, for anyone who has written 8-bit or 16-bit assembly it should be fairly easy to follow. The way interrupt vectors are setup at regular intervals just after the entry point at 4000 is similar to Z80. Being such an early computer, the AGC has a reputation of being primitive and difficult to program, but coming from C64 and Channel F development it didn't seem all that different - but then I'm making 2048, not calculating the required thrust to achieve lunar orbit.....
 
