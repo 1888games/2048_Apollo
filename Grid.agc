@@ -4,12 +4,13 @@ RESETALL
              CA         TWENTY1         # Set loop counter to 21
              TS         CUR_ID
 RESETLOOP
+
+             EXTEND
+             DIM        CUR_ID          # Decrement id so we start at 20, end at 0
              CA         NEG_ONE         # Load -1 to A (empty cell)
              INDEX      CUR_ID          # Index by current loop count
              TS         VALUES          # Save -1 to empty this grid cell
 
-             EXTEND
-             DIM        CUR_ID          # Decrement loop counter
              CA         CUR_ID          # Load loop counter
              EXTEND
              BZF        RESETEND        # If zero, we've cleared all of VALUES array
@@ -45,7 +46,29 @@ NEWNUM
 
 GENZERO                                 # Generate a 0 or 1 in an empty grid cell
              EXTEND
-             QXCH      RET_ADR2         # Save the return address of the calling function
+             QXCH       RET_ADR2         # Save the return address of the calling function
+
+CHECKEMP                                 # Check whether all grid spaces taken
+             CA         TWENTY1          # Load 21 into A for loop counter
+             TS         CUR_ID           # Store into loop counter
+CHKLOOP
+
+             EXTEND
+             DIM        CUR_ID          # Decrement id so we start at 20, end at 0
+
+             INDEX      CUR_ID          # Index by current loop count
+             CA         VALUES          # Get this grid cell
+             AD         DEC1            # Add 1, if empty (-1) will be 0
+             EXTEND
+             BZF        NEWBOX          # When found first empty cell, start process to find random one
+
+             CA         DEC6            # Load 6 into accumulator
+             EXTEND
+             SU         CUR_ID          # Subtract id. If 6, is first ID of game grid.
+             EXTEND
+             BZF        EXITGEN        # If zero, all cells are occupied, don't bother
+
+             TCF        CHKLOOP
 
 
 NEWBOX
@@ -108,6 +131,7 @@ STORENEW
         INDEX   PLAY_ID       # Index by chosen cell ID
         TS      VALUES        # Store 0-1 into values array by index
 
+EXITGEN
         EXTEND
         QXCH      RET_ADR2    # Restore return address of calling func
 
