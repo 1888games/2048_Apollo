@@ -1,0 +1,170 @@
+Apollo Guidance Computer (AGC) assembler, version 2017-04-17, built Apr 17 2017, target AGC4
+(c)2003-2005,2009-2010,2016 Ronald S. Burkey
+Refer to http://www.ibiblio.org/apollo/index.html for more information.
+Pass #1
+Pass #2
+000001,000001: ???????                        KEYRUPT1                                                  	#
+000002,000002: 
+000003,000003: 
+000004,000004: ???????           00006                           EXTEND                                 	#
+Input.agc:5: Fatal Error: Symbol "CH15" undefined or offset bad
+000005,000005: ???????           00000                           READ     CH15                          	#
+Input.agc:6: Fatal Error: Symbol "LOW5" undefined or offset bad
+000006,000006: ???????           70000                           MASK     LOW5                          	#
+Input.agc:7: Fatal Error: Symbol "KEYBUF" undefined or offset bad
+000007,000007: ???????           54000                           TS       KEYBUF                        	#
+Input.agc:8: Fatal Error: Symbol "ZEROES" undefined or offset bad
+000008,000008: ???????           30000                           CA       ZEROES                        	# Clear the input channel.
+000009,000009: ???????           00006                           EXTEND                                 	#
+Input.agc:10: Fatal Error: Symbol "CH15" undefined or offset bad
+000010,000010: ???????           01000                           WRITE    CH15                          	#
+000011,000011: 
+Input.agc:12: Fatal Error: Symbol "ARUPT" undefined or offset bad
+000012,000012: ???????           52000                           DXCH     ARUPT                         	# Restore A, L, and Q, and exit the interrupt
+000013,000013: ???????           00006                           EXTEND                                 	#
+Input.agc:14: Fatal Error: Symbol "QRUPT" undefined or offset bad
+000014,000014: ???????           22000                           QXCH     QRUPT                         	#
+000015,000015: ???????           50017                           RESUME                                 	#
+000016,000016: 
+000017,000017: 
+000018,000018: 
+000019,000019: 
+000020,000020: 
+000021,000021: ???????                        CHECK_KEY                                                  	#
+000022,000022:                                                                                          	#----------------------------------------------------------------------
+000023,000023:                                                                                          	# Check if there's a keycode ready, and process the keycode
+000024,000024:                                                                                          	# if there is.
+Input.agc:25: Fatal Error: Symbol "NOKEY" undefined or offset bad
+000025,000025: ???????           30000                           CA       NOKEY                         	#
+Input.agc:26: Fatal Error: Symbol "KEYBUF" undefined or offset bad
+000026,000026: ???????           56000                           XCH      KEYBUF                        	# Mark keycode buffer as empty and get keycode into A.
+Input.agc:27: Fatal Error: Symbol "A" undefined or offset bad
+000027,000027: ???????           50000                           INDEX    A                             	#
+Input.agc:28: Fatal Error: Destination address not resolved.
+000028,000028: ???????           16000                           TCF      KEYTABL                       	#
+000029,000029: ???????                        KEYTABL                                                   	#
+Input.agc:30: Fatal Error: Destination address not resolved.
+000030,000030: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:31: Fatal Error: Destination address not resolved.
+000031,000031: ???????           16000                           TCF      ENDKYCK                       	# 1
+Input.agc:32: Fatal Error: Symbol "REGEN" undefined or offset bad
+000032,000032: ???????           16000                           TCF      REGEN                         	# 2
+Input.agc:33: Fatal Error: Destination address not resolved.
+000033,000033: ???????           16000                           TCF      ENDKYCK                       	# 3
+Input.agc:34: Fatal Error: Destination address not resolved.
+000034,000034: ???????           16000                           TCF      ENDKYCK                       	# 4
+Input.agc:35: Fatal Error: Destination address not resolved.
+000035,000035: ???????           16000                           TCF      ENDKYCK                       	# 5
+Input.agc:36: Fatal Error: Destination address not resolved.
+000036,000036: ???????           16000                           TCF      ENDKYCK                       	# 6
+Input.agc:37: Fatal Error: Destination address not resolved.
+000037,000037: ???????           16000                           TCF      ENDKYCK                       	# 7
+Input.agc:38: Fatal Error: Destination address not resolved.
+000038,000038: ???????           16000                           TCF      ENDKYCK                       	# 8
+Input.agc:39: Fatal Error: Destination address not resolved.
+000039,000039: ???????           16000                           TCF      ENDKYCK                       	# 9
+Input.agc:40: Fatal Error: Destination address not resolved.
+000040,000040: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:41: Fatal Error: Destination address not resolved.
+000041,000041: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:42: Fatal Error: Destination address not resolved.
+000042,000042: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:43: Fatal Error: Destination address not resolved.
+000043,000043: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:44: Fatal Error: Destination address not resolved.
+000044,000044: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:45: Fatal Error: Destination address not resolved.
+000045,000045: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:46: Fatal Error: Destination address not resolved.
+000046,000046: ???????           16000                           TCF      ENDKYCK                       	# 0
+Input.agc:47: Fatal Error: Destination address not resolved.
+000047,000047: ???????           16000                           TCF      ENDKYCK                       	# VERB
+Input.agc:48: Fatal Error: Destination address not resolved.
+000048,000048: ???????           16000                           TCF      ENDKYCK                       	# RSET
+Input.agc:49: Fatal Error: Destination address not resolved.
+000049,000049: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:50: Fatal Error: Destination address not resolved.
+000050,000050: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:51: Fatal Error: Destination address not resolved.
+000051,000051: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:52: Fatal Error: Destination address not resolved.
+000052,000052: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:53: Fatal Error: Destination address not resolved.
+000053,000053: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:54: Fatal Error: Destination address not resolved.
+000054,000054: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:55: Fatal Error: Destination address not resolved.
+000055,000055: ???????           16000                           TCF      ENDKYCK                       	# KEY REL
+Input.agc:56: Fatal Error: Destination address not resolved.
+000056,000056: ???????           16000                           TCF      ENDKYCK                       	# +
+Input.agc:57: Fatal Error: Destination address not resolved.
+000057,000057: ???????           16000                           TCF      ENDKYCK                       	# -
+Input.agc:58: Fatal Error: Symbol "INIT" undefined or offset bad
+000058,000058: ???????           16000                           TCF      INIT                          	# ENTR
+Input.agc:59: Fatal Error: Destination address not resolved.
+000059,000059: ???????           16000                           TCF      ENDKYCK                       	# unused
+Input.agc:60: Fatal Error: Destination address not resolved.
+000060,000060: ???????           16000                           TCF      ENDKYCK                       	# CLR
+Input.agc:61: Fatal Error: Destination address not resolved.
+000061,000061: ???????           16000                           TCF      ENDKYCK                       	# NOUN
+Input.agc:62: Fatal Error: Destination address not resolved.
+000062,000062: ???????           16000                           TCF      ENDKYCK                       	# NOKEY
+000063,000063: 
+000064,000064: 
+000065,000065: ???????                        ENDKYCK                                                   	#
+Input.agc:66: Fatal Error: Symbol "MAINLOOP" undefined or offset bad
+000066,000066: ???????           16000                           TCF      MAINLOOP                      	#
+
+
+Usage Table for Fixed-Memory Banks
+----------------------------------
+Bank 00:  0000/2000 words used.
+Bank 01:  0000/2000 words used.
+Bank 02:  0000/2000 words used.
+Bank 03:  0000/2000 words used.
+Bank 04:  0000/2000 words used.
+Bank 05:  0000/2000 words used.
+Bank 06:  0000/2000 words used.
+Bank 07:  0000/2000 words used.
+Bank 10:  0000/2000 words used.
+Bank 11:  0000/2000 words used.
+Bank 12:  0000/2000 words used.
+Bank 13:  0000/2000 words used.
+Bank 14:  0000/2000 words used.
+Bank 15:  0000/2000 words used.
+Bank 16:  0000/2000 words used.
+Bank 17:  0000/2000 words used.
+Bank 20:  0000/2000 words used.
+Bank 21:  0000/2000 words used.
+Bank 22:  0000/2000 words used.
+Bank 23:  0000/2000 words used.
+Bank 24:  0000/2000 words used.
+Bank 25:  0000/2000 words used.
+Bank 26:  0000/2000 words used.
+Bank 27:  0000/2000 words used.
+Bank 30:  0000/2000 words used.
+Bank 31:  0000/2000 words used.
+Bank 32:  0000/2000 words used.
+Bank 33:  0000/2000 words used.
+Bank 34:  0000/2000 words used.
+Bank 35:  0000/2000 words used.
+Bank 36:  0000/2000 words used.
+Bank 37:  0000/2000 words used.
+Bank 40:  0000/2000 words used.
+Bank 41:  0000/2000 words used.
+Bank 42:  0000/2000 words used.
+Bank 43:  0000/2000 words used.
+
+
+Symbol Table
+------------
+     1,E:   $17             0017  		     2,E:   $3              0003  		     3,E:   $4              0004  		     4,E:   $5              0005  
+     5,E:   $6              0006  		     6,E:   $7              0007  		     7,I:   CHECK_KEY    ???????  		     8,I:   ENDKYCK      ???????  
+     9,I:   KEYRUPT1     ???????  		    10,I:   KEYTABL      ???????  		
+
+Unresolved symbols:  4
+Fatal errors:  45
+Warnings:  0
+Removing the duplicated lines... 
+
+Symbol-table file written.

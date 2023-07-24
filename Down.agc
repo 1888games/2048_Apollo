@@ -88,7 +88,9 @@ D_NOSOF
 D_MATCH
 
         INDEX   CELLCOL         # Index by the column these cells are in
-        TC      UPGRADE          # Increase target cell, empty orig cell
+        INCR    MATCHMD         # Set flag that we have already matched on this column
+
+        TC      UPGRADE         # Increase target cell, empty orig cell
 
         TCF     D_NOCOL         # Move along to next column
 MOV_DN
@@ -157,7 +159,8 @@ CELL_MOV
 UPGRADE
 
 
-        INCR    PLAY_ID         # Increase counter as something is going to move
+        INCR    PLAY_ID
+                # Increase counter as something is going to move
 
         CA      CELL_VALUE      # Load value in original cell
         AD      DEC1            # Add 1 because we are combining

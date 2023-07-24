@@ -1,0 +1,80 @@
+Apollo Guidance Computer (AGC) assembler, version 2017-04-17, built Apr 17 2017, target AGC4
+(c)2003-2005,2009-2010,2016 Ronald S. Burkey
+Refer to http://www.ibiblio.org/apollo/index.html for more information.
+Pass #1
+Pass #2
+Pass #3
+000001,000001: 
+000002,000002:    4000                                           BLOCK    02                            	#
+000003,000003:    4000                        T3RUPT                                                    	#
+Interrupts.agc:4: Fatal Error: Symbol "O37774" undefined or offset bad
+000004,000004:    4000           30000                           CAF      O37774                        	# Schedule another TIME3 interrupt
+Interrupts.agc:5: Fatal Error: Symbol "TIME3" undefined or offset bad
+000005,000005:    4001           54000                           TS       TIME3                         	# ... and don't do anything else, yet...
+000006,000006: 
+Interrupts.agc:7: Fatal Error: Symbol "COUNTER" undefined or offset bad
+000007,000007:    4002           24000                           INCR     COUNTER                       	#
+000008,000008: 
+000009,000009:    4003           04004                           TC       RESUME                        	#
+000010,000010: 
+000011,000011:                                                                                          	#TC     ERRORDSP
+000012,000012: 
+Interrupts.agc:13: Fatal Error: Symbol "ARUPT" undefined or offset bad
+000013,000013:    4004           52000        RESUME             DXCH     ARUPT                         	# Restore A, L, and Q, and exit the interrupt
+000014,000014:    4005           00006                           EXTEND                                 	#
+Interrupts.agc:15: Fatal Error: Symbol "QRUPT" undefined or offset bad
+000015,000015:    4006           22000                           QXCH     QRUPT                         	#
+000016,000016:    4007           50017                           RESUME                                 	#
+
+
+Usage Table for Fixed-Memory Banks
+----------------------------------
+Bank 00:  0000/2000 words used.
+Bank 01:  0000/2000 words used.
+Bank 02:  0010/2000 words used.
+Bank 03:  0000/2000 words used.
+Bank 04:  0000/2000 words used.
+Bank 05:  0000/2000 words used.
+Bank 06:  0000/2000 words used.
+Bank 07:  0000/2000 words used.
+Bank 10:  0000/2000 words used.
+Bank 11:  0000/2000 words used.
+Bank 12:  0000/2000 words used.
+Bank 13:  0000/2000 words used.
+Bank 14:  0000/2000 words used.
+Bank 15:  0000/2000 words used.
+Bank 16:  0000/2000 words used.
+Bank 17:  0000/2000 words used.
+Bank 20:  0000/2000 words used.
+Bank 21:  0000/2000 words used.
+Bank 22:  0000/2000 words used.
+Bank 23:  0000/2000 words used.
+Bank 24:  0000/2000 words used.
+Bank 25:  0000/2000 words used.
+Bank 26:  0000/2000 words used.
+Bank 27:  0000/2000 words used.
+Bank 30:  0000/2000 words used.
+Bank 31:  0000/2000 words used.
+Bank 32:  0000/2000 words used.
+Bank 33:  0000/2000 words used.
+Bank 34:  0000/2000 words used.
+Bank 35:  0000/2000 words used.
+Bank 36:  0000/2000 words used.
+Bank 37:  0000/2000 words used.
+Bank 40:  0000/2000 words used.
+Bank 41:  0000/2000 words used.
+Bank 42:  0000/2000 words used.
+Bank 43:  0000/2000 words used.
+
+
+Symbol Table
+------------
+     1,E:   $17             0017  		     2,E:   $3              0003  		     3,E:   $4              0004  		     4,E:   $5              0005  
+     5,E:   $6              0006  		     6,E:   $7              0007  		     7,F:   RESUME          4004  		     8,F:   T3RUPT          4000  
+
+Unresolved symbols:  0
+Fatal errors:  5
+Warnings:  0
+Removing the duplicated lines... 
+
+Symbol-table file written.

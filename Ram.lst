@@ -1,0 +1,107 @@
+Apollo Guidance Computer (AGC) assembler, version 2017-04-17, built Apr 17 2017, target AGC4
+(c)2003-2005,2009-2010,2016 Ronald S. Burkey
+Refer to http://www.ibiblio.org/apollo/index.html for more information.
+Pass #1
+Pass #2
+Pass #3
+000001,000001: 
+000002,000002:                                                                                          	#-------------------------------------------------------------------------
+000003,000003:                                                                                          	# Some variables.
+000004,000004: 
+000005,000005:    0024                                           SETLOC   24                            	#
+000006,000006:    0024                        TIME2              ERASE                                  	#
+000007,000007:    0025                        TIME1              ERASE                                  	#
+000008,000008:    0026                        TIME3              ERASE                                  	#
+000009,000009:    0027                        TIME4              ERASE                                  	#
+000010,000010:    0030                        TIME5              ERASE                                  	#
+000011,000011:    0031                        TIME6              ERASE                                  	#
+000012,000012: 
+000013,000013:    0061                                           SETLOC   61                            	#
+000014,000014: 
+000015,000015:    0061                        ERRNUM             ERASE                                  	# Error-code, reported to DSKY.
+000016,000016:    0062                        ERRSUB             ERASE                                  	# Error-subcode.
+000017,000017: 
+000018,000018:                                                                                          	# Dummy variables.
+000019,000019:    0063                        TEMPI              ERASE                                  	#
+000020,000020:    0064                        TEMPJ              ERASE                                  	#
+000021,000021:    0065                        TEMPK              ERASE                                  	#
+000022,000022: 
+000023,000023: 
+000024,000024:    0067                                           SETLOC   67                            	#
+000025,000025:    0067                        NEWJOB             ERASE                                  	#
+000026,000026: 
+000027,000027:                                                                                          	# For Smally's tests.
+000028,000028:    0071                                           SETLOC   71                            	#
+000029,000029: 
+000030,000030:    0071                        MPAC               ERASE    +6                            	# MULTI-PURPOSE ACCUMULATOR.
+000031,000031:    0100                        WDRET              ERASE                                  	#
+000032,000032:    0101                        WDCNT              ERASE                                  	#
+000033,000033:    0102                        SEED               ERASE                                  	#
+000034,000034:    0103                        COUNTER            ERASE                                  	#
+000035,000035: 
+000036,000036:    0104                        VALUES             ERASE    +24                           	#
+000037,000037:    0131                        CUR_ID             ERASE                                  	#
+000038,000038:    0132                        SEG_OUT            ERASE                                  	#
+000039,000039:    0133                        DSKY_OUT           ERASE                                  	#
+000040,000040:    0134                        DIGIT_L            ERASE                                  	#
+000041,000041:    0135                        DIGIT_R            ERASE                                  	#
+
+
+Usage Table for Fixed-Memory Banks
+----------------------------------
+Bank 00:  0000/2000 words used.
+Bank 01:  0000/2000 words used.
+Bank 02:  0000/2000 words used.
+Bank 03:  0000/2000 words used.
+Bank 04:  0000/2000 words used.
+Bank 05:  0000/2000 words used.
+Bank 06:  0000/2000 words used.
+Bank 07:  0000/2000 words used.
+Bank 10:  0000/2000 words used.
+Bank 11:  0000/2000 words used.
+Bank 12:  0000/2000 words used.
+Bank 13:  0000/2000 words used.
+Bank 14:  0000/2000 words used.
+Bank 15:  0000/2000 words used.
+Bank 16:  0000/2000 words used.
+Bank 17:  0000/2000 words used.
+Bank 20:  0000/2000 words used.
+Bank 21:  0000/2000 words used.
+Bank 22:  0000/2000 words used.
+Bank 23:  0000/2000 words used.
+Bank 24:  0000/2000 words used.
+Bank 25:  0000/2000 words used.
+Bank 26:  0000/2000 words used.
+Bank 27:  0000/2000 words used.
+Bank 30:  0000/2000 words used.
+Bank 31:  0000/2000 words used.
+Bank 32:  0000/2000 words used.
+Bank 33:  0000/2000 words used.
+Bank 34:  0000/2000 words used.
+Bank 35:  0000/2000 words used.
+Bank 36:  0000/2000 words used.
+Bank 37:  0000/2000 words used.
+Bank 40:  0000/2000 words used.
+Bank 41:  0000/2000 words used.
+Bank 42:  0000/2000 words used.
+Bank 43:  0000/2000 words used.
+
+
+Symbol Table
+------------
+     1,E:   $17             0017  		     2,E:   $3              0003  		     3,E:   $4              0004  		     4,E:   $5              0005  
+     5,E:   $6              0006  		     6,E:   $7              0007  		     7,E:   COUNTER         0103  		     8,E:   CUR_ID          0131  
+     9,E:   DIGIT_L         0134  		    10,E:   DIGIT_R         0135  		    11,E:   DSKY_OUT        0133  		    12,E:   ERRNUM          0061  
+    13,E:   ERRSUB          0062  		    14,E:   MPAC            0071  		    15,E:   NEWJOB          0067  		    16,E:   SEED            0102  
+    17,E:   SEG_OUT         0132  		    18,E:   TEMPI           0063  		    19,E:   TEMPJ           0064  		    20,E:   TEMPK           0065  
+    21,E:   TIME1           0025  		    22,E:   TIME2           0024  		    23,E:   TIME3           0026  		    24,E:   TIME4           0027  
+    25,E:   TIME5           0030  		    26,E:   TIME6           0031  		    27,E:   VALUES          0104  		    28,E:   WDCNT           0101  
+    29,E:   WDRET           0100  		
+
+Unresolved symbols:  0
+Fatal errors:  0
+Warnings:  0
+Removing the duplicated lines... 
+
+Symbol-table file written.
+
