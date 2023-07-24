@@ -22,7 +22,7 @@ This website was an essential resource, it contains everything anyone would ever
 Some common instructions I used a lot in this code and their nearest 6502 equivalent:
 
     CA      LDA   Load into accumulator (no immediate mode, must be address)
-    TS      STA   Store accumulator into RAM
+    TS      STA   Store accumulator into RAM (erasable memory)
     TCF     JMP   Jump to label
     TC      JSR   Jump to subroutine
     RETURN  RTS   Return from subroutine (no stack, so for nested routines you need to save return address)
