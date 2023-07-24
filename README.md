@@ -2,9 +2,14 @@
 
 This is a port of the popular mobile game 2048 for the Apollo Guidance Computer.
 
+Playable in the browser here: https://1888games.github.io/agc.html
+
 Instead of making 2048, you need to create a 9 (the equivalent of 1024 in the original game).
 
 Press any key to begin, then use the 2, 4, 6, and 8 keys to 'swipe' all the numbers in that direction. When two numbers of the same value crash into each other, they merge to form the next number. Create a 9 to complete the game! You can press Enter or Restart to start the game again.
+
+
+
 
 The game is written in AGC assembly, just like the Command Module and Lunar Lander software from the Apollo missions, and takes up just over 75% of one 2K-word fixed memory bank, or around 3Kb. 
 
@@ -12,14 +17,7 @@ Fortunately, unlike the pioneering programmers of that software, I didn't have t
 
 I have commented each line of code to show what it does, for anyone who has written 8-bit or 16-bit assembly it should be fairly easy to follow. The way interrupt vectors are setup at regular intervals just after the entry point at 4000 is similar to Z80. Being such an early computer, the AGC has a reputation of being primitive and difficult to program, but coming from C64 and Channel F development it didn't seem all that different - but then I'm making 2048, not calculating the required thrust to achieve lunar orbit.....
 
-This website was an essential resource, it contains everything anyone would ever want to know about the AGC and more:
-
-http://www.ibiblio.org/apollo/
-
-I am working on how to make this easy to run for everyone, as I had some trouble with the Windows version of VirtualAGC - for now the 'easiest' way is to run the Linux Virtual Box which has everything already set up. Hopefully I will be able to compile a version of MoonJS (a Javascript port of VirtualAGC) with my binary included - currently it only runs the included Apollo software.
-
-https://www.ibiblio.org/apollo/download.html
-
+This website was an essential resource, it contains everything anyone would ever want to know about the AGC and more: http://www.ibiblio.org/apollo/
 
 Some common instructions I used a lot in this code and their nearest 6502 equivalent:
 
