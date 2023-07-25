@@ -11,7 +11,7 @@ Press any key to begin, then use the 2, 4, 6, and 8 keys to 'swipe' all the numb
 
 
 
-The game is written in AGC assembly, just like the Command Module and Lunar Lander software from the Apollo missions, and takes up just over 75% of one 2K-word fixed memory bank, or around 3Kb. 
+The game is written in AGC assembly, just like the Command Module and Lunar Lander software from the Apollo missions, and takes up just over 75% one of the 2K-word fixed memory banks, or around 1500 bytes. (where 2000 octal = 1024 decimal and a 15-bit word is roughly two bytes).
 
 Fortunately, unlike the pioneering programmers of that software, I didn't have to enter my code onto punch cards (one per instruction, two if the comment was long...), have it saved onto tape and then wait two months for it to be hand-woven into core rope memory. The joys of modern technology means it assembles in milliseconds and can then be tested in a Linux-based emulator, VirtualAGC. 
 
